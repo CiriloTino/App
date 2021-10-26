@@ -4,6 +4,9 @@
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
+  <footer>
+    Pie de pagina
+  </footer>
 </template>
 
 <style>
