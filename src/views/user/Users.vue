@@ -1,10 +1,11 @@
 <template>
   <section>
-    <div>
-      <input type="text" placeholder="Buscar" v-model="input_search" @keyup="buscar" />
-      <button>Nuevo usuario</button>
+    <div class="btn-group">
+      <input class="btn-search" type="text" placeholder="Buscar" v-model="input_search" @keyup="buscar" @input="onChange"/>
+      <button class="btn">Nuevo usuario</button>
     </div>
 
+    <div class="table">
     <table>
       <thead>
         <tr>
@@ -23,6 +24,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </section>
 </template>
 
@@ -58,5 +60,68 @@ export default {
 </script>
 
 <style>
+
+
+.table{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #fafafa;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+}
+
+th{
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 1em;
+line-height: 1em;
+align-items: center;
+color: #1B4698;
+padding: 10px;
+padding-right: 7em;
+text-align: left;
+border-bottom:2px solid #1B4698;
+}
+
+td{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1em;
+  align-items: center;
+  text-align: left;
+  color: #6D798F;
+  padding: 10px;
+  border-bottom:1px solid #1B4698;
+}
+
+
+.btn-search{
+width: 46em;
+background: #FFFFFF;
+border: 1px solid #B7C3D9;
+box-sizing: border-box;
+padding:1em;
+margin-right: 5rem;
+}
+
+.btn{
+  background: #011843;
+  color: white;
+  padding:1em;
+  padding-left:2em;
+  padding-right:2em;
+}
+
+.btn-group{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 </style>
