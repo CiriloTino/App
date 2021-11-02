@@ -1,9 +1,14 @@
 <template>
   <section>
     <div class="btn-group">
-      <input class="btn-search" type="text" placeholder="Buscar" v-model="input_search" @keyup="buscar" @input="onChange"/>
-      <button class="btn">Nuevo usuario</button>
+      <input class="btn-search" type="text" placeholder="Buscar" v-model="input_search" @keyup="buscar"/>
+      <button class="btn" @click="showModal">Nuevo usuario</button>
     </div>
+
+    <Modal
+      v-show="isModalVisible"
+      @close="closeModal"
+    />
 
     <div class="table">
     <table>
@@ -28,36 +33,58 @@
   </section>
 </template>
 
+
+
+
+
 <script>
 import data from './data'
+import Modal from './Create_user'
 
 export default {
   name: 'Users',
+  components:{
+    Modal,
+  },
   data () {
     return {
       input_search: '',
-      users: []
-    }
+      users: [],
+      isModalVisible: false,
+    };
   },
+
   created() {
     this.users = data
   },
+
   methods: {
+    showModal() {
+        this.isModalVisible = true;
+      },
+    closeModal() {
+        this.isModalVisible = false;
+    },
     nombreCompleto( item ){
       return `${item.nombre} ${item.apellidos}`
     },
     buscar(){
+      console.log(this.input_search)
       let found = this.users.filter( 
-        (item) => item.nombre.toLowerCase() == this.input_search.toLowerCase()  
+        //(item) => item.nombre.toLowerCase() == this.input_search.toLowerCase()
+        (item) => item.nombre.toLowerCase().startsWith(this.input_search.toLowerCase())
       )
-      if( found.length > 0 )
+      if( found.length > 0 & this.input_search!="")
         this.users = found
       else
         this.users = data
-    }
+    },
   }
 }
 </script>
+
+
+
 
 <style>
 
